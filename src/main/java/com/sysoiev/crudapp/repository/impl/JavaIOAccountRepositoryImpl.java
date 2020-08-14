@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JavaIOAccountRepositoryImpl implements AccountRepository {
-    private final String filePath = "src\\main\\resources\\accounts.txt";
+    private final String filePath = "src\\main\\resources\\accounts.csv";
 
     @Override
     public Account getById(Long id) {
