@@ -8,21 +8,6 @@ public class Customer {
     private String surname;
     private Account account;
     private Set<Specialty> specialties;
-/*
-    public Customer(Long id, String name, String surname, Set<Specialty> specialties, Account account) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.specialties = specialties;
-        this.account = account;
-    }
-
-    public Customer(String name, String surname, Set<Specialty> specialties, Account account) {
-        this.name = name;
-        this.surname = surname;
-        this.specialties = specialties;
-        this.account = account;
-    }*/
 
     private Customer(CustomerBuilder builder) {
         this.id = builder.id;
@@ -31,6 +16,7 @@ public class Customer {
         this.specialties = builder.specialties;
         this.account = builder.account;
     }
+
     public Long getId() {
         return id;
     }
@@ -71,6 +57,7 @@ public class Customer {
     public String toString() {
         return id + "/ " + name + "/ " + surname + "/ " + getSpecialties() + " /" + account.getId();
     }
+
     public static class CustomerBuilder {
         private Long id;
         private String name;
