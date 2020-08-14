@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 public class CommonView {
 
+    private AccountView accountView;
+    private CustomerView customerView;
     private SpecialtyView specialtyView;
     private static CommonView view;
 
-    /*  AccountView accountView = new AccountView();
-      CustomerView customerView = new CustomerView();*/
     private CommonView() {
         specialtyView = new SpecialtyView();
+        accountView = new AccountView();
+        customerView = new CustomerView();
     }
 
     public static CommonView getInstance() {
@@ -35,12 +37,12 @@ public class CommonView {
                 case 1:
                     runSpecialty();
                     break;
-               /* case 2:
+                case 2:
                     runAccount();
                     break;
                 case 3:
                     runCustomer();
-                    break;*/
+                    break;
                 case 4:
                     go = false;
                     break;
@@ -55,26 +57,12 @@ public class CommonView {
         specialtyView.run();
     }
 
-   /* public void runAccount() {
+    public void runAccount() {
         accountView.run();
     }
 
     public void runCustomer() {
         customerView.run();
-    }*/
+    }
 
 }
-/*public class PathSingleton {
-    private static String filePath =null;
-    private static PathSingleton path;
-
-    private PathSingleton(){
-        filePath = "src\\main\\resources\\specialties.csv";
-    }
-    public static  PathSingleton getInstance() {
-        if (path == null) {
-            path = new PathSingleton();
-        }
-        return path;
-    }
-}*/

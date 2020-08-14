@@ -69,7 +69,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return this.id + "/ " + this.name + "/ " + this.surname + "/ " + this.getSpecialties() + " /" + this.account.getId();
+        return id + "/ " + name + "/ " + surname + "/ " + getSpecialties() + " /" + account.getId();
     }
     public static class CustomerBuilder {
         private Long id;
