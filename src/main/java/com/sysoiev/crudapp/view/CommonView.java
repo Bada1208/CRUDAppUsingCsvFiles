@@ -4,12 +4,24 @@ import java.util.Scanner;
 
 public class CommonView {
 
-    SpecialtyView specialtyView = new SpecialtyView();
-  /*  AccountView accountView = new AccountView();
-    CustomerView customerView = new CustomerView();*/
-    Scanner scanner = new Scanner(System.in);
+    private SpecialtyView specialtyView;
+    private static CommonView view;
+
+    /*  AccountView accountView = new AccountView();
+      CustomerView customerView = new CustomerView();*/
+    private CommonView() {
+        specialtyView = new SpecialtyView();
+    }
+
+    public static CommonView getInstance() {
+        if (view == null) {
+            view = new CommonView();
+        }
+        return view;
+    }
 
     public void run() {
+        Scanner scanner = new Scanner(System.in);
         boolean go = true;
         while (go) {
             System.out.println("\nChoose file in order to do operations , please :");
@@ -52,3 +64,17 @@ public class CommonView {
     }*/
 
 }
+/*public class PathSingleton {
+    private static String filePath =null;
+    private static PathSingleton path;
+
+    private PathSingleton(){
+        filePath = "src\\main\\resources\\specialties.csv";
+    }
+    public static  PathSingleton getInstance() {
+        if (path == null) {
+            path = new PathSingleton();
+        }
+        return path;
+    }
+}*/

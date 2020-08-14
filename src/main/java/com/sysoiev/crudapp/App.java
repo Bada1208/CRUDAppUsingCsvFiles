@@ -4,6 +4,8 @@ import com.sysoiev.crudapp.view.CommonView;
 
 public class App {
     public static void main(String[] args) {
-        new CommonView().run();
+        // new CommonView().run();
+        CommonView view = CommonView.getInstance();
+        view.run();
     }
 }
