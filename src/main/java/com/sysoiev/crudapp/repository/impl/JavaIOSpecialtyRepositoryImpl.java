@@ -3,12 +3,14 @@ package com.sysoiev.crudapp.repository.impl;
 import com.sysoiev.crudapp.model.Specialty;
 import com.sysoiev.crudapp.repository.SpecialtiesRepository;
 
+import javax.crypto.NullCipher;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JavaIOSpecialtyRepositoryImpl implements SpecialtiesRepository {
     private final String filePath = "src\\main\\resources\\specialties.csv";
@@ -16,12 +18,6 @@ public class JavaIOSpecialtyRepositoryImpl implements SpecialtiesRepository {
     @Override
     public Specialty getById(Long id) {
         List<String> fromFile = null;
-        Specialty specialty= null;
-        try {
-            specialty = null;
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
         try {
             fromFile = Files.readAllLines(Paths.get(filePath));
         } catch (IOException e) {
@@ -29,10 +25,13 @@ public class JavaIOSpecialtyRepositoryImpl implements SpecialtiesRepository {
         }
         for (String s : fromFile) {
             if (s.substring(0, s.indexOf(" ")).equals(String.valueOf(id))) {
+
                 return new Specialty(id, s.substring(s.indexOf(' ')));
             }
         }
-        return specialty;
+
+        Optional<Specialty> empty =  Optional.empty();
+        return empty.orElseThrow(NullPointerException::new);
     }
 
     @Override

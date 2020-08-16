@@ -23,8 +23,17 @@ public class SpecialtyView {
     public void getByIdSpecialty() {
         System.out.println("Enter id in order to get specialty :");
         Long id = Long.parseLong(scanner.next());
-        System.out.println(specialtyController.getValueByIndex(id).toString());
+        try {
+            if (specialtyController.getValueByIndex(id) != null)
+                System.out.println(specialtyController.getValueByIndex(id).toString());
+
+        } catch (NullPointerException e) {
+            System.out.println("There is no such number ");
+            System.out.println("Try one more time, please");
+            getByIdSpecialty();
+        }
     }
+
 
     public void saveSpecialty() {
         System.out.println("Enter id : ");

@@ -27,8 +27,7 @@ public class SpecialtyController {
 
     }
 
-    public Specialty getValueByIndex(long index){
+    public Specialty getValueByIndex(long index) {
         return specialtyRepository.getById(index);
     }
-
 }
