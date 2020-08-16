@@ -22,7 +22,7 @@ public class SpecialtyView {
 
     public void getByIdSpecialty() {
         System.out.println("Enter id in order to get specialty :");
-        long id = Long.parseLong(scanner.next());
+        Long id = Long.parseLong(scanner.next());
         System.out.println(specialtyController.getValueByIndex(id).toString());
     }
 

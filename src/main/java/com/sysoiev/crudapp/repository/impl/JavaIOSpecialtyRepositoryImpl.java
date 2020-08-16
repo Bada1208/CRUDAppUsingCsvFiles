@@ -13,10 +13,15 @@ import java.util.List;
 public class JavaIOSpecialtyRepositoryImpl implements SpecialtiesRepository {
     private final String filePath = "src\\main\\resources\\specialties.csv";
 
-
     @Override
     public Specialty getById(Long id) {
         List<String> fromFile = null;
+        Specialty specialty= null;
+        try {
+            specialty = null;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         try {
             fromFile = Files.readAllLines(Paths.get(filePath));
         } catch (IOException e) {
@@ -27,7 +32,7 @@ public class JavaIOSpecialtyRepositoryImpl implements SpecialtiesRepository {
                 return new Specialty(id, s.substring(s.indexOf(' ')));
             }
         }
-        return null;
+        return specialty;
     }
 
     @Override
