@@ -11,7 +11,9 @@ public class SpecialtyView {
 
     public void printSpecialties() {
         System.out.println("List of all specialties : ");
-        System.out.println(specialtyController.printAll());
+        if (specialtyController.printAll().size() == 0)
+            System.out.println("There is nothing here, use insert , please");
+        else System.out.println(specialtyController.printAll());
     }
 
     public void deleteSpecialty() {

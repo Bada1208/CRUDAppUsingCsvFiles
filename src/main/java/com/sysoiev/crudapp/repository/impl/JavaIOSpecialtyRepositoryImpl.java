@@ -30,7 +30,7 @@ public class JavaIOSpecialtyRepositoryImpl implements SpecialtiesRepository {
             }
         }
 
-        Optional<Specialty> empty =  Optional.empty();
+        Optional<Specialty> empty = Optional.empty();
         return empty.orElseThrow(NullPointerException::new);
     }
 
@@ -83,8 +83,12 @@ public class JavaIOSpecialtyRepositoryImpl implements SpecialtiesRepository {
         List<Specialty> specialtyList = new ArrayList<>();
         try {
             fromFile = Files.readAllLines(Paths.get(filePath));
-            for (String s : fromFile) {
-                specialtyList.add(new Specialty(Long.parseLong(s.substring(0, s.indexOf(" "))), s.substring(s.indexOf(" "))));
+            if (fromFile.size() == 0) {
+                return specialtyList;
+            } else {
+                for (String s : fromFile) {
+                    specialtyList.add(new Specialty(Long.parseLong(s.substring(0, s.indexOf(" "))), s.substring(s.indexOf(" "))));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
