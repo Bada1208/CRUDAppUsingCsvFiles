@@ -3,9 +3,7 @@ package com.sysoiev.crudapp.repository.impl;
 import com.sysoiev.crudapp.model.Specialty;
 import com.sysoiev.crudapp.repository.SpecialtiesRepository;
 
-import javax.crypto.NullCipher;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -82,12 +80,20 @@ public class JavaIOSpecialtyRepositoryImpl implements SpecialtiesRepository {
         List<String> fromFile = null;
         List<Specialty> specialtyList = new ArrayList<>();
         try {
-            fromFile = Files.readAllLines(Paths.get(filePath));
-            if (fromFile.size() == 0) {
-                return specialtyList;
-            } else {
-                for (String s : fromFile) {
-                    specialtyList.add(new Specialty(Long.parseLong(s.substring(0, s.indexOf(" "))), s.substring(s.indexOf(" "))));
+            File file = new File(filePath);
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+            String line;
+            while ((line = br.readLine()) != null) {
+
+                if (!line.isEmpty()) {
+                    fromFile = Files.readAllLines(Paths.get(filePath));
+                    if (fromFile.size() == 0) {
+                        return specialtyList;
+                    } else {
+                        for (String s : fromFile) {
+                            specialtyList.add(new Specialty(Long.parseLong(s.substring(0, s.indexOf(" "))), s.substring(s.indexOf(" "))));
+                        }
+                    }
                 }
             }
         } catch (IOException e) {
@@ -97,3 +103,17 @@ public class JavaIOSpecialtyRepositoryImpl implements SpecialtiesRepository {
     }
 
 }
+/*File file = new File("Ваш файл");
+ BufferedReader br = new BufferedReader(new InputStreamReader(
+                        new FileInputStream(file), "UTF-8"));
+String line;
+while ((line = br.readLine()) != null) {//тут мы уже проверим,что читаемые строки не равны null
+//вот тут можно включить проверку
+
+if (!line.equals("")) {
+//смотрит не пустая ли строка,Т.е не равна ли строка line пустоте
+}
+
+if (!line.isEmpty()) {
+//еще один вариант проверки на непустоту строки
+}*/
